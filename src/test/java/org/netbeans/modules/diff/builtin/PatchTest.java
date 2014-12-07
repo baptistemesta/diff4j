@@ -21,7 +21,7 @@ public class PatchTest extends TestCase {
         File b = File.createTempFile("test", "base");
         FileUtils.copyURLToFile(getClass().getResource("base.txt"),b);
 
-        ContextualPatch patch = ContextualPatch.create(p, b);
+        ContextualPatch patch = ContextualPatch.create("", b);
         List<PatchReport> report = patch.patch(false);
 
         assertEquals(resourceAsString("after.txt"), FileUtils.readFileToString(b));
@@ -36,7 +36,7 @@ public class PatchTest extends TestCase {
         File p = File.createTempFile("test", "diff");
         FileUtils.copyURLToFile(getClass().getResource("multifile/multiFilePatch.diff"),p);
 
-        ContextualPatch patch = ContextualPatch.create(p,d);
+        ContextualPatch patch = ContextualPatch.create("",d);
         List<PatchReport> report = patch.patch(false);
         System.out.println(report);
 
@@ -53,7 +53,7 @@ public class PatchTest extends TestCase {
         File b = File.createTempFile("test", "base");
         FileUtils.copyURLToFile(getClass().getResource("simple.txt"),b);
 
-        ContextualPatch patch = ContextualPatch.create(p, b);
+        ContextualPatch patch = ContextualPatch.create("", b);
         List<PatchReport> report = patch.patch(false);
 
         assertTrue(report.size() == 1);
@@ -73,7 +73,7 @@ public class PatchTest extends TestCase {
         File p = File.createTempFile("test", "diff");
         FileUtils.copyURLToFile(getClass().getResource("singleFileAddWithTimestamp.diff"),p);
 
-        ContextualPatch patch = ContextualPatch.create(p,d);
+        ContextualPatch patch = ContextualPatch.create("",d);
         List<PatchReport> report = patch.patch(false);
         System.out.println(report);
 
